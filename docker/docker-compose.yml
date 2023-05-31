@@ -1,0 +1,64 @@
+version: '3'
+
+# TODO: 理解する
+# volumes:
+#   vendor-store-app:
+#   vendor-store-admin:
+
+services:
+  # API
+  api:
+    container_name: ${COMPOSE_PROJECT_NAME}-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      DOCUMENT_ROOT: ${DIR_WEB_DOCUMENT_ROOT}
+      LOGS_DIR: ${DIR_WEB_LOGS}
+    ports:
+      - "10180:80"
+    volumes:
+      - ../_api/backend:${DIR_WEB_HTML}
+      - ${DIR_WEB_HTML}/storage/framework
+      # - vendor-store-app:${DIR_WEB_HTML}/vendor
+      - ./api/apache:/etc/apache2/sites-enabled
+      - ./api/php/php.ini:/usr/local/etc/php/php.ini
+      - ./api/apache/logs:${DIR_WEB_LOGS}
+
+  # WEB
+  web:
+    container_name: ${COMPOSE_PROJECT_NAME}-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    environment:
+      DOCUMENT_ROOT: ${DIR_WEB_DOCUMENT_ROOT}
+      LOGS_DIR: ${DIR_WEB_LOGS}
+    ports:
+      - "10181:80"
+    volumes:
+      - ../_web/backend:${DIR_WEB_HTML}
+      - ${DIR_WEB_HTML}/storage/framework
+      # - vendor-store-admin:${DIR_WEB_HTML}/vendor
+      - ./web/apache:/etc/apache2/sites-enabled
+      - ./web/php/php.ini:/usr/local/etc/php/php.ini
+      - ./web/apache/logs:${DIR_WEB_LOGS}
+
+  # データベース
+  db:
+    container_name: ${COMPOSE_PROJECT_NAME}-db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME}
+      MYSQL_USER: ${COMPOSE_PROJECT_NAME}
+      MYSQL_PASSWORD: ${COMPOSE_PROJECT_NAME}-pw
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/log:/var/log/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/sql:/docker-entrypoint-initdb.d
