@@ -9,11 +9,13 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<!-- Styles -->
+{{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer="defer"></script>
+<!-- Scripts -->
+{{--    <script src="{{ asset('js/app.js') }}" defer="defer"></script>--}}
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>

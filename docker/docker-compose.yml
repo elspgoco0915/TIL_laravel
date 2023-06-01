@@ -1,9 +1,8 @@
 version: '3'
 
-# TODO: 理解する
-# volumes:
-#   vendor-store-app:
-#   vendor-store-admin:
+# MY_TODO:
+# レスポンス改善用にvendor-storeの使い方学習する
+# (参考にしたい) https://qiita.com/sayuprc/items/9b9ce31f05e258438d68
 
 services:
   # API
@@ -20,7 +19,6 @@ services:
     volumes:
       - ../_api/backend:${DIR_WEB_HTML}
       - ${DIR_WEB_HTML}/storage/framework
-      # - vendor-store-app:${DIR_WEB_HTML}/vendor
       - ./api/apache:/etc/apache2/sites-enabled
       - ./api/php/php.ini:/usr/local/etc/php/php.ini
       - ./api/apache/logs:${DIR_WEB_LOGS}
@@ -39,7 +37,6 @@ services:
     volumes:
       - ../_web/backend:${DIR_WEB_HTML}
       - ${DIR_WEB_HTML}/storage/framework
-      # - vendor-store-admin:${DIR_WEB_HTML}/vendor
       - ./web/apache:/etc/apache2/sites-enabled
       - ./web/php/php.ini:/usr/local/etc/php/php.ini
       - ./web/apache/logs:${DIR_WEB_LOGS}
@@ -62,3 +59,15 @@ services:
       - ./db/log:/var/log/mysql
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./db/sql:/docker-entrypoint-initdb.d
+
+  # phpmyadmin
+  pma:
+    container_name: ${COMPOSE_PROJECT_NAME}-pma
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=${COMPOSE_PROJECT_NAME}-db
+      - PMA_USER=${COMPOSE_PROJECT_NAME}
+      - PMA_PASSWORD=${COMPOSE_PROJECT_NAME}-pw
+    ports:
+      - "8080:80"

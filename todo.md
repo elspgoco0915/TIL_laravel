@@ -1,11 +1,11 @@
 # 思いつきTODO
 - 立ち上げ手順
-- .env.example を コピーする
-- php artisan key:generate
-- 疎通確認
-- 初期設定系
-- chmod -R 777 /var/www/html/storage/
-- docker重いので軽量化
+  - .env.example を コピーする
+  - php artisan key:generate
+  - 疎通確認
+  - 初期設定系
+  - chmod -R 777 /var/www/html/storage/
+  - docker重いので軽量化(vendor-store)
 
 ```bash
 php artisan tinker
