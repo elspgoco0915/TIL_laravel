@@ -21,12 +21,14 @@ public/hot
 public_html/storage
 public_html/hot
 
-storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-/.vagrant
+# others
 .phpunit.result.cache
+/.vagrant
+Homestead.json
+Homestead.yaml
+storage/*.key
+
+# phpstorm
 .idea/*
 _web/.idea
 _api/.idea
