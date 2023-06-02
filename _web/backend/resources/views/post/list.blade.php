@@ -16,10 +16,17 @@
         <div class="flex">
             <div class="relative">
                 <select name="sort" class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option value="">ID順</option>
-                    <option value="category" @if(old('sort') == "category") selected @endif>カテゴリーID順</option>
-                    <option value="user" @if(old('sort') == "user") selected @endif>ユーザーID順</option>
-                    <option value="last_create" @if(old('sort') == "last_create") selected @endif>作成順</option>
+                    {{-- 初期状態はID順 --}}
+                    <option value="">
+                        ID順
+                    </option>
+                    {{--　選択した場合 --}}
+                    @foreach($orderOptions as $option)
+                    <option value="{{ $option->value }}"
+                            @if($selectedSort === $option->value) selected @endif>
+                        {{ $option->label() }}
+                    </option>
+                    @endforeach
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>

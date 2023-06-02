@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Collections\AdminNotificationCollection;
+use App\Enums\Order;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -21,10 +23,13 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // 指定した順番で取得
-        $list = $this->post->getSortedList($request);
         return view('post.list', [
-            'list' => $list,
+            // 指定した順番で取得
+            'list'         => $this->post->getSortedList($request),
+            // 選択項目のenum
+            'orderOptions' => Order::cases(),
+            // 選択しているソートの入力値
+            'selectedSort' => intval($request->input('sort')),
         ]);
     }
 
