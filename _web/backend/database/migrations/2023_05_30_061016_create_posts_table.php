@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('title')->comment('題名');
-            $table->string('content')->unique()->comment('本文');
+            $table->string('content')->comment('本文');
             $table->timestamps();
         });
     }
