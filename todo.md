@@ -6,6 +6,8 @@
   - 初期設定系
   - chmod -R 777 /var/www/html/storage/
   - docker重いので軽量化(vendor-store)
+  - npm run dev
+  - npm run build
 
 ```bash
 php artisan tinker
