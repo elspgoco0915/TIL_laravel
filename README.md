@@ -13,3 +13,23 @@ save what today I learned in Laravel
 - [プロジェクトをGitHubからクローンした後にやること](https://chigusa-web.com/blog/laravel-github-clone/)
 - [既にLaravel Sailで構築済みのプロジェクトにおけるの開発環境構築手順まとめ Windows10 Home対応](https://zenn.dev/na9/articles/e5d70c156ea141)
 - [Laravel SailのSailコマンドと仲良くなりたい](https://zenn.dev/ryuu/articles/what-is-sail)
+
+
+### cloneして構築の仕方
+- .envファイルの作成
+```bash
+cp .env.example .env
+```
+
+- ubuntuで以下コマンドを実行
+```bash
+cd ./til-laravel
+
+
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+```
