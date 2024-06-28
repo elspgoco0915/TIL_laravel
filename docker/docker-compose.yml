@@ -18,7 +18,8 @@ services:
       - "10180:80"
     volumes:
       - ../_api/backend:${DIR_WEB_HTML}
-      - ${DIR_WEB_HTML}/storage/framework
+      # // TODO: 初回起動時いらない(以降もいらないか確認する)
+      # - ${DIR_WEB_HTML}/storage/framework
       - ./api/apache:/etc/apache2/sites-enabled
       - ./api/php/php.ini:/usr/local/etc/php/php.ini
       - ./api/apache/logs:${DIR_WEB_LOGS}
@@ -36,7 +37,8 @@ services:
       - "10181:80"
     volumes:
       - ../_web/backend:${DIR_WEB_HTML}
-      - ${DIR_WEB_HTML}/storage/framework
+      # // TODO: 初回起動時いらない(以降もいらないか確認する)
+      # - ${DIR_WEB_HTML}/storage/framework
       - ./web/apache:/etc/apache2/sites-enabled
       - ./web/php/php.ini:/usr/local/etc/php/php.ini
       - ./web/apache/logs:${DIR_WEB_LOGS}
