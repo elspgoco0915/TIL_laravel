@@ -8,6 +8,8 @@
   - docker重いので軽量化(vendor-store)
   - npm run dev
   - npm run build
+  - TODO: dockerの構成誤っているので直す(コメントアウト部分)
+  - apiとファットコントローラーを解決する
 
 ```bash
 php artisan tinker

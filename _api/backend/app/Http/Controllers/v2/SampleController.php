@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -8,6 +8,8 @@ use Illuminate\Validation\ValidationException;
 
 class SampleController
 {
+    // TODO: v2用に書き直す
+    // リクエストクラス、apiリソースを用いて返すなど
     // ファットコントローラーでシンプルな書き方
     public function index(Request $request)
     {
