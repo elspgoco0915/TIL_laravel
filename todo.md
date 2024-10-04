@@ -29,3 +29,15 @@ DB::select('select 1');
 
 - tailwind cssをいれる
 - 
+
+## 雑メモ
+- apiってなんぞ
+- get, postの違い
+- ステータスコード
+- postmanの使い方
+- スリム化するとなにが変わるか
+
+- curlコマンドでの動作確認の方法メモ
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"title":"hogehoge", "description":"fugafuga"}' http://localhost:10180/api/sample/create
+```
