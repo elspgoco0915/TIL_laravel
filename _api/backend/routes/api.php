@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // 一般的に、/api/{※バージョン}/{リソース}/{※動詞}の構成でURLを作る
 // {※}は必要であれば付ける
 Route::get('/sample', [SampleController::class, 'index']);
+Route::post('/sample/create', [SampleController::class, 'create']);
